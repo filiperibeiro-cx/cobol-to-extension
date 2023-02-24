@@ -4,7 +4,7 @@ declare regex="\s*IDENTIFICATION DIVISION.\s*"
 
 DIR="SAMPLE/"
 TEMP_DIR="OUT-SAMPLE/"
-EXTENSION="clb"
+EXTENSION="cob"
 
 COUNTER=0
 for file in $(find ${DIR} -type f)
