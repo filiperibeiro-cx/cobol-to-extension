@@ -32,7 +32,7 @@ COUNTER=0
 COPYBOOK_FILES=()
 
 echo "Starting to analyze the source code..."
-ALL_FILES=$(grep -rle '\s*IDENTIFICATION DIVISION.\s*' ${SRC_DIR}) 
+ALL_FILES=$(grep -rlE '\s*IDENTIFICATION DIVISION.\s*|\s*ID DIVISION.\s*' ${SRC_DIR}) 
 
 
 for file in ${ALL_FILES[@]}; do

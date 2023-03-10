@@ -27,7 +27,7 @@ COUNTER=0
 # ---------------------------------------------------------------------
 
 echo "Starting to analyze the source code..."
-ALL_FILES=$(grep -rle '\s*IDENTIFICATION DIVISION.\s*' ${SRC_DIR}) 
+ALL_FILES=$(grep -rlE '\s*IDENTIFICATION DIVISION.\s*|\s*ID DIVISION.\s*' ${SRC_DIR}) 
 
 for file in ${ALL_FILES[@]}; do
   new_file=${SRC_OUTPUT}${file}

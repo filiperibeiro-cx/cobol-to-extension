@@ -32,8 +32,7 @@ COUNTER=0
 COPYBOOK_FILES=()
 
 echo "Starting to analyze the source code..."
-ALL_FILES=$(grep -rle '\s*IDENTIFICATION DIVISION.\s*' ${SRC_DIR}) 
-
+ALL_FILES=$(grep -rlE '\s*IDENTIFICATION DIVISION.\s*|\s*ID DIVISION.\s*' ${SRC_DIR}) 
 
 for file in ${ALL_FILES[@]}; do
   new_file=${SRC_OUTPUT}${file}
@@ -46,7 +45,7 @@ for file in ${ALL_FILES[@]}; do
   
   (( COUNTER++ ))
 
-  if [ $(($COUNTER % 10)) == "0" ] ; then
+  if [ $(($COUNTER % 50)) == "0" ] ; then
     echo "..." $COUNTER "files..."
   fi
 done
@@ -64,12 +63,12 @@ for cb in ${SORTED_UNIQUE_COPYBOOKS[@]}; do
     mkdir -p $(dirname ${new_copybook_file})
     cp $fcb $new_copybook_file.$COBOL_COPYBOOK_EXTENSION
 
-    (( COUNTER++ ))
-
-    if [ $(($COUNTER % 10)) == "0" ] ; then
-      echo "..." $COUNTER "files..."
-    fi
   done
+  (( COUNTER++ ))
+
+  if [ $(($COUNTER % 50)) == "0" ] ; then
+    echo "..." $COUNTER "files..."
+  fi
 done
 
 echo "Finish the source code analysis."
