@@ -50,11 +50,11 @@ timestamp
 # Order copybooks and remove duplacated
 SORTED_UNIQUE_COPYBOOKS=($(echo "${COPYBOOK_FILES[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' '))
 
-for cb in ${SORTED_UNIQUE_COPYBOOKS[@]}; do
-  echo ${cb}
-done
+#for cb in ${SORTED_UNIQUE_COPYBOOKS[@]}; do
+#  echo ${cb}
+#done
 
-#echo ${COPYBOOK_FILES[@]}
+echo ${SORTED_UNIQUE_COPYBOOKS[@]}
 # echo "Total files: "$COUNTER
 timestamp
 
