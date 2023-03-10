@@ -18,6 +18,11 @@ for file in ${ALL_FILES[@]}; do
   mkdir -p $(dirname ${new_file})
   cp $file $new_file.$COBOL_EXTENSION
   (( COUNTER++ ))
+
+  if [ $(($COUNTER % 10)) == "0" ] ; then
+    echo "..."$COUNTER "files..."
+  fi
+
 done
 
 echo "Total files: "$COUNTER

@@ -38,6 +38,11 @@ for file in ${ALL_FILES[@]}; do
 
 
   (( COUNTER++ ))
+
+  if [ $(($COUNTER % 10)) == "0" ] ; then
+    echo "..."$COUNTER "files..."
+  fi
+
 done
 
 timestamp
