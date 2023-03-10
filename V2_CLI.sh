@@ -8,6 +8,8 @@
 SRC_DIR="MySrcProject/"
 # Source code output folder
 SRC_OUTPUT="OUT-MySrcProjectOUT/"
+# CxServer
+CX_SERVER="http://localhost"
 # CxUser
 CX_USER=""
 # CxPassword
@@ -46,7 +48,7 @@ echo "Total files: "$COUNTER
 
 echo "Start running CLI..."
 # Trigger a new SAST scan 
-./CxConsolePlugin-1.1.21/runCxConsole.sh Scan -v -ProjectName ${CX_PROJECT_NAME} -CxServer http://localhost -CxUser ${CX_USER} -CxPassword ${CX_PASSWORD} -LocationType folder -LocationPath "../"${SRC_OUTPUT} -preset "Checkmarx Default" -ForceScan 
+./CxConsolePlugin-1.1.21/runCxConsole.sh Scan -v -ProjectName ${CX_PROJECT_NAME} -CxServer ${CX_SERVER} -CxUser ${CX_USER} -CxPassword ${CX_PASSWORD} -LocationType folder -LocationPath "../"${SRC_OUTPUT} -preset "Checkmarx Default" -ForceScan 
 echo "CLI scan finish..."
  
 echo "Removing folder..."
@@ -54,6 +56,7 @@ echo "Removing folder..."
 rm -drf ${SRC_OUTPUT}
 
 echo "Done"
-exit
 
 # ---------------------------------------------------------------------
+
+exit
