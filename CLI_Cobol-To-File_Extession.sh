@@ -5,7 +5,7 @@
 # -------------------------------------------------------------------------------------------- #
 
 # Source code folder path
-SRC_DIR="SAMPLE-2/"
+SRC_DIR="SAMPLE/"
 # Source code output folder
 SRC_OUTPUT="OUT-SAMPLE/"
 # CxServer
@@ -85,6 +85,16 @@ echo "Total files: "$COUNTER
 
 # -------------------------------------------------------------------------------------------- #
 
+echo "Start running CLI..."
+# Trigger a new SAST scan 
+./CxConsolePlugin-1.1.21/runCxConsole.sh Scan -v -ProjectName ${CX_PROJECT_NAME} -CxServer ${CX_SERVER} -CxUser ${CX_USER} -CxPassword ${CX_PASSWORD} -LocationType folder -LocationPath "../"${SRC_OUTPUT} -preset "Checkmarx Default" -ForceScan 
+echo "CLI scan finish..."
+ 
+echo "Removing folder..."
+# Remove Source code output folder
+rm -drf ${SRC_OUTPUT}
+
+echo "Done"
 
 # -------------------------------------------------------------------------------------------- #
 
