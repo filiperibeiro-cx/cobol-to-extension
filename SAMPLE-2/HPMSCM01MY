@@ -1,6 +1,3 @@
-
-3214556 IDENTIFICATION DIVISION.
-
       **************************************************************************
       * CATEGORY.: HPMS CICS PROGRAMS
       * GROUP....: COBOL
@@ -11,7 +8,7 @@
       * MODIFICATIONS
       * 2017-10-02 - LHAYNIE - INITIAL VERSION
       **************************************************************************
-       IDENTIFICATION DIVISION.
+       ID DIVISION.
        PROGRAM-ID.  HPMSCM01.
       **************************************************************************
        DATA DIVISION.
@@ -37,8 +34,7 @@
        01  END-OF-SESSION-MESSAGE            PIC X(20)
              VALUE 'HPMS SESSION ENDED'.
        01  RESPONSE-CODE                     PIC S9(8) COMP.
-       COPY HPMSB01.
-       COPY DFHAID.
+       COPY HPMSCM01.
       **************************************************************************
        LINKAGE SECTION.
        01  DFHCOMMAREA                       PIC X.

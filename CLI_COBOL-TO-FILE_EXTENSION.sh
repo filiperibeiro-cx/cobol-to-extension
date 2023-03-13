@@ -34,7 +34,6 @@ COPYBOOK_FILES=()
 echo "Starting to analyze the source code..."
 ALL_FILES=$(grep -rlE '\s*IDENTIFICATION DIVISION.\s*|\s*ID DIVISION.\s*' ${SRC_DIR}) 
 
-
 for file in ${ALL_FILES[@]}; do
   new_file=${SRC_OUTPUT}${file}
   mkdir -p $(dirname ${new_file})
@@ -46,7 +45,7 @@ for file in ${ALL_FILES[@]}; do
   
   (( COUNTER++ ))
 
-  if [ $(($COUNTER % 10)) == "0" ] ; then
+  if [ $(($COUNTER % 50)) == "0" ] ; then
     echo "..." $COUNTER "files..."
   fi
 done
@@ -58,18 +57,27 @@ SORTED_UNIQUE_COPYBOOKS=($(echo "${COPYBOOK_FILES[@]}" | tr ' ' '\n' | sort -u |
 for cb in ${SORTED_UNIQUE_COPYBOOKS[@]}; do 
   # Find copybook file
   FIND_COPYBOOKS=$(find ${SRC_DIR} -type f -name *${cb})
+
   # Copy each file found
   for fcb in ${FIND_COPYBOOKS[@]}; do
-    new_copybook_file=${SRC_OUTPUT}${fcb}
-    mkdir -p $(dirname ${new_copybook_file})
-    cp $fcb $new_copybook_file.$COBOL_COPYBOOK_EXTENSION
-
-    (( COUNTER++ ))
-
-    if [ $(($COUNTER % 10)) == "0" ] ; then
-      echo "..." $COUNTER "files..."
+    # cobol (cob) file already exists 
+    if  test -f "${SRC_OUTPUT}${fcb}.$COBOL_EXTENSION"; then :
+    else
+      new_copybook_file=${SRC_OUTPUT}${fcb}
+      # check if the copybook file already exists 
+      if  test -f "$new_copybook_file.$COBOL_COPYBOOK_EXTENSION"; then :
+      else
+        mkdir -p $(dirname ${new_copybook_file})
+        cp $fcb $new_copybook_file.$COBOL_COPYBOOK_EXTENSION
+        (( COUNTER++ ))
+      fi
     fi
   done
+  
+
+  if [ $(($COUNTER % 50)) == "0" ] ; then
+    echo "..." $COUNTER "files..."
+  fi
 done
 
 echo "Finish the source code analysis."
